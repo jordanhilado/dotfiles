@@ -4,6 +4,11 @@
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
+if [ -z "$TMUX" ]
+then
+    tmux attach -t TMUX || tmux new -s TMUX
+fi
+
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
@@ -107,10 +112,53 @@ source $ZSH/oh-my-zsh.sh
 #   prompt_segment black default "${emojis[$RAND_EMOJI_N]} "
 # }
 
-[ -f "/Users/jordanhilado/.ghcup/env" ] && source "/Users/jordanhilado/.ghcup/env" # ghcup-env
+#[ -f "/Users/jordanhilado/.ghcup/env" ] && source "/Users/jordanhilado/.ghcup/env" # ghcup-env
 
 # alias .. = 'cd ..'
 # alias ... = 'cd ../..'
 # alias .... = 'cd ../../..'
 
+hello_helper_one () {
+  RB_RED=$(printf '\033[38;5;196m')
+  RB_ORANGE=$(printf '\033[38;5;202m')
+  RB_YELLOW=$(printf '\033[38;5;226m')
+  RB_GREEN=$(printf '\033[38;5;082m')
+  RB_BLUE=$(printf '\033[38;5;021m')
+  RB_INDIGO=$(printf '\033[38;5;093m')
+  RB_VIOLET=$(printf '\033[38;5;163m')
+  printf '%s         %s__      %s           %s        %s       %s     %s__   %s\n' $RB_RED $RB_ORANGE $RB_YELLOW $RB_GREEN $RB_BLUE $RB_INDIGO $RB_VIOLET $RB_RESET
+  printf '%s  ____  %s/ /_    %s ____ ___  %s__  __  %s ____  %s_____%s/ /_  %s\n' $RB_RED $RB_ORANGE $RB_YELLOW $RB_GREEN $RB_BLUE $RB_INDIGO $RB_VIOLET $RB_RESET
+  printf '%s / __ \%s/ __ \  %s / __ `__ \%s/ / / / %s /_  / %s/ ___/%s __ \ %s\n' $RB_RED $RB_ORANGE $RB_YELLOW $RB_GREEN $RB_BLUE $RB_INDIGO $RB_VIOLET $RB_RESET
+  printf '%s/ /_/ /%s / / / %s / / / / / /%s /_/ / %s   / /_%s(__  )%s / / / %s\n' $RB_RED $RB_ORANGE $RB_YELLOW $RB_GREEN $RB_BLUE $RB_INDIGO $RB_VIOLET $RB_RESET
+  printf '%s\____/%s_/ /_/ %s /_/ /_/ /_/%s\__, / %s   /___/%s____/%s_/ /_/  %s\n' $RB_RED $RB_ORANGE $RB_YELLOW $RB_GREEN $RB_BLUE $RB_INDIGO $RB_VIOLET $RB_RESET
+  printf '%s    %s        %s           %s /____/ %s       %s     %s          %s\n' $RB_RED $RB_ORANGE $RB_YELLOW $RB_GREEN $RB_BLUE $RB_INDIGO $RB_VIOLET $RB_RESET
+  neofetch
+}
+
+# Now you should redefine the "hello" function (which currently contains
+# all the code from the file) to something that covers its actual
+# functionality. After that, the two helper functions along with the core
+# function will be defined and visible in global scope.
+hello () {
+  printf '%s\n' "$(hello_helper_one)"
+}
+
+# Finally run the redefined function with the same arguments as the current
+# run. If this is left out, the functionality implemented by the newly
+# defined "hello" function is not executed upon its first call. So:
+hello "$@"
+
+# fast commit and push to github
+
+function gitfast() { git add . && git commit -m "$*" && git push origin main; }
+
+alias ls="ll -t"
+alias gs="git status"
+alias vim="nvim"
+
 eval "$(starship init zsh)"
+alias g++='g++ -std=c++17'
+
+[ -f "/Users/jordanhilado/.ghcup/env" ] && source "/Users/jordanhilado/.ghcup/env" # ghcup-env
+
+# neofetch

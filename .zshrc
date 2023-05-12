@@ -152,9 +152,11 @@ hello "$@"
 
 function gitfast() { git add . && git commit -m "$*" && git push origin main; }
 
-alias ls="ll -t"
 alias gs="git status"
 alias vim="nvim"
+alias gp="git pull"
+alias gb="git branch"
+alias gsl="git stash list"
 
 eval "$(starship init zsh)"
 alias g++='g++ -std=c++17'
@@ -162,3 +164,26 @@ alias g++='g++ -std=c++17'
 [ -f "/Users/jordanhilado/.ghcup/env" ] && source "/Users/jordanhilado/.ghcup/env" # ghcup-env
 
 # neofetch
+eval "$(fnm env --use-on-cd)"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/jordanhilado/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/jordanhilado/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/jordanhilado/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/jordanhilado/google-cloud-sdk/completion.zsh.inc'; fi
+# source ~/.bash_profile
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+# __conda_setup="$('/Users/jordanhilado/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+# if [ $? -eq 0 ]; then
+#   eval "$__conda_setup"
+# else
+#    if [ -f "/Users/jordanhilado/miniconda3/etc/profile.d/conda.sh" ]; then
+#        . "/Users/jordanhilado/miniconda3/etc/profile.d/conda.sh"
+#    else
+#        export PATH="/Users/jordanhilado/miniconda3/bin:$PATH"
+#    fi
+# fi
+# unset __conda_setup
+# <<< conda initialize <<<
+eval "$(pyenv init --path)"

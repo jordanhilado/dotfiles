@@ -150,13 +150,16 @@ hello "$@"
 
 # fast commit and push to github
 
-function gitfast() { git add . && git commit -m "$*" && git push origin main; }
+function gfmain() { git add . && git commit -m "$*" && git push origin main; }
+function gfmaster() { git add . && git commit -m "$*" && git push origin master; }
 
 alias gs="git status"
 alias vim="nvim"
 alias gp="git pull"
 alias gb="git branch"
 alias gsl="git stash list"
+alias gl="git log"
+alias gc="git checkout"
 
 eval "$(starship init zsh)"
 alias g++='g++ -std=c++17'
